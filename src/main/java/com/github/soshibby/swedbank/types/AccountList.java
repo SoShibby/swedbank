@@ -58,4 +58,14 @@ public class AccountList {
         this.cardAccounts = cardAccounts;
     }
 
+    public List<TransactionAccount> getAllAccounts() {
+        List<TransactionAccount> accounts = new ArrayList<>();
+        accounts.addAll(transactionAccounts);
+        accounts.addAll(transactionDisposalAccounts);
+        accounts.addAll(loanAccounts);
+        accounts.addAll(savingAccounts);
+        accounts.addAll(cardAccounts);
+        return accounts;
+    }
+
 }
