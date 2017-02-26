@@ -1,8 +1,10 @@
-group 'com.github.SoShibby'
-version '1.0-SNAPSHOT'
-
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'signing'
+
+group 'com.github.soshibby'
+archivesBaseName = "swedbank"
+version '1.2'
 
 sourceCompatibility = 1.8
 
@@ -19,4 +21,68 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.3'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
     compile 'joda-time:joda-time:2.9.7'
+}
+
+/* Publishing to Sonatype */
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'swedbank'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Unofficial Java API client for Swedbank.'
+                url 'https://github.com/SoShibby/swedbank'
+
+                scm {
+                    url 'scm:git@github.com:SoShibby/swedbank.git'
+                    connection 'scm:git@github.com:SoShibby/swedbank.git'
+                    developerConnection 'scm:git@github.com:SoShibby/swedbank.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'shibbey'
+                        name 'Henrik Nilsson'
+                    }
+                }
+            }
+        }
+    }
 }
