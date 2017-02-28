@@ -58,6 +58,9 @@ for (TransactionAccount account : accountList.getAllAccounts()) {
 }
 ```
 
+## Example Projects
+- [Export your Swedbank account and transaction information to Google spreadsheet.](https://github.com/SoShibby/swedbank-google-spreadsheet)
+
 ## Not Implemented
 - Transfer money between accounts
 - Activate, deactivate and view quick balance (aka. snabbsaldo)
