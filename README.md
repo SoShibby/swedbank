@@ -68,16 +68,20 @@ For information on how to implement this check out https://github.com/walle89/Sw
 
 ## Releases
 
-Available in the [Maven Central repository](https://mvnrepository.com/search?q=com.github.soshibby)
+Available in the [Maven Central repository](https://mvnrepository.com/artifact/com.github.soshibby/swedbank/1.2)
 
 ### Maven configuration:
 ```java
 <dependency>
+    <groupId>com.github.soshibby</groupId>
+    <artifactId>swedbank</artifactId>
+    <version>1.2</version>
 </dependency>
 ```
 
 ### Gradle configuration:
 ```java
+compile group: 'com.github.soshibby', name: 'swedbank', version: '1.2'
 ```
 
 ## Special Thanks
