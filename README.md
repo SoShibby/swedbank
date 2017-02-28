@@ -66,5 +66,19 @@ for (TransactionAccount account : accountList.getAllAccounts()) {
 
 For information on how to implement this check out https://github.com/walle89/SwedbankJson.
 
+## Releases
+
+Available in the [Maven Central repository](https://mvnrepository.com/search?q=com.github.soshibby)
+
+### Maven configuration:
+```java
+<dependency>
+</dependency>
+```
+
+### Gradle configuration:
+```java
+```
+
 ## Special Thanks
 A special thank you to https://github.com/walle89 for providing the code on which this project is based on (https://github.com/walle89/SwedbankJson).
